@@ -17,6 +17,7 @@ model User {
   salt    String
 
   account Account?
+  blockList BlockList?
 }
 
 model Account {
@@ -25,4 +26,28 @@ model Account {
   
   ownerId  Int @unique
   owner    User     @relation(fields: [ownerId], references: [id]) 
+}
+
+
+model BlockList {
+  id       Int      @id @default(autoincrement())
+  items    BlockItem[]
+
+  ownerId  Int @unique
+  owner    User     @relation(fields: [ownerId], references: [id]) 
+}
+
+model BlockItem {
+  id       Int      @id @default(autoincrement())
+  type          BlockListType
+  data          String
+  createdAt     DateTime @default(now())
+
+  blocklistId   Int
+  blockList     BlockList @relation(fields: [blocklistId], references: [id])
+} 
+
+enum BlockListType {
+  Website
+  Keyword
 }
