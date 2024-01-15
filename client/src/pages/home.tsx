@@ -1,17 +1,20 @@
-import { authControllerGetSessionInfo } from "@/shared/api/generated";
-import { useQuery } from "@tanstack/react-query";
-
 import { UIHeader } from "@/shared/ui/ui-header";
+import { SignOutButton } from "@/features/auth";
+import { useSessionQuery } from "@/entities/session/queries";
 
-export default function HomePage() {
-  const { data, isLoading } = useQuery({
-    queryKey: ["session"],
-    queryFn: () => authControllerGetSessionInfo(),
-  });
+export const HomePage = () => {
+  const { data } = useSessionQuery();
 
   return (
     <main className="min-h-screen">
-      <UIHeader>{data?.email}</UIHeader>
+      <UIHeader>
+        {
+          <div>
+            <span>{data?.email}</span>
+            <SignOutButton />
+          </div>
+        }
+      </UIHeader>
     </main>
   );
-}
+};

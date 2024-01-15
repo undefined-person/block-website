@@ -10,7 +10,6 @@ export const UIPageSpinner = ({ className }: { className?: string }) => {
         className,
       )}
     >
-      <UISpinner />
       <UISpinner className="text-blue-500 w-24 h-24" />
     </div>
   );

@@ -13,7 +13,7 @@ export const UIHeader = ({
   return (
     <header
       className={clsx(
-        "px-4 py-5 border-b border-b-slate-300 justify-between flex items-center",
+        "px-4 py-5 border-b border-b-slate-300 justify-between flex items-center bg-white",
         className,
       )}
     >
