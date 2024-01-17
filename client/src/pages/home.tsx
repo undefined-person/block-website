@@ -1,20 +1,19 @@
 import { UIHeader } from "@/shared/ui/ui-header";
-import { SignOutButton } from "@/features/auth";
-import { useSessionQuery } from "@/entities/session/queries";
+import { ToggleBlockingButton } from "@/features/toggle-blocking";
+import { Profile } from "@/widgets/profile";
 
 export const HomePage = () => {
-  const { data } = useSessionQuery();
-
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <UIHeader>
-        {
-          <div>
-            <span>{data?.email}</span>
-            <SignOutButton />
-          </div>
-        }
+        <Profile />
       </UIHeader>
-    </main>
+      <div className="grid grid-cols-[200px_1fr]">
+        <aside className="p-5 bg-gray-50 h-[calc(100vh_-_105px)]">
+          <ToggleBlockingButton />
+        </aside>
+        <main>Block List</main>
+      </div>
+    </div>
   );
 };
